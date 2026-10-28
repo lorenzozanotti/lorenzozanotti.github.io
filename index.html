@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lorenzo Zanotti</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Lorenzo Zanotti, Data Science student at the University of Milano-Bicocca. Statistical modeling, machine learning and football analytics.">
+<meta property="og:title" content="Lorenzo Zanotti">
+<meta property="og:description" content="Data Science student in Milan. Statistical modeling, machine learning and football analytics.">
+<meta property="og:image" content="https://lorenzozanotti.github.io/img/lorenzo.jpg">
+<link rel="icon" href="img/lorenzo-square.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: portrait-led hero with an "at a glance" strip; work grouped by focus area;
+     one case study band; experience and education side by side; projects as a 2-column index. */
+  :root {
+    --paper: #f5f6f4;
+    --surface: #ffffff;
+    --ink: #15191f;
+    --sub: #4c5561;
+    --muted: #868e99;
+    --line: #dfe2e5;
+    --accent: #1f48b0;
+    --accent-soft: #e3eafa;
+    --hero: #f5f6f4;
+    --deep: #12306f;
+    --on-deep: #ffffff;
+    --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+    --sans: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  img { display: block; max-width: 100%; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(28px, env(safe-area-inset-left, 0px)); padding-right: max(28px, env(safe-area-inset-right, 0px)); }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+  .serif { font-family: var(--serif); font-weight: 400; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; text-wrap: balance; }
+
+  /* nav */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); }
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { height: 58px; display: flex; align-items: center; gap: 26px; }
+  .nav .name { font: 600 23px/1 var(--serif); text-decoration: none; margin-right: auto; }
+  .nav a.l { text-decoration: none; color: var(--sub); font-size: 14px; }
+  .nav a.l:hover { color: var(--ink); }
+
+  /* hero */
+  .hero { padding-block: 64px 56px; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 64px; align-items: center; }
+  .portrait { margin: 0; order: 2; }
+  .portrait img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 1px var(--line), 0 0 0 10px var(--surface), 0 0 0 11px var(--line); }
+  .portrait figcaption { margin-top: 26px; color: var(--muted); text-align: center; }
+  .eyebrow { color: var(--accent); margin-bottom: 18px; }
+  .hero { background: var(--hero); }
+  .hero h1 { color: var(--accent); font-size: clamp(56px, 7.4vw, 96px); line-height: .95; letter-spacing: -.02em; margin-bottom: 26px; }
+  .intro { font-size: 19px; line-height: 1.55; color: var(--sub); max-width: 58ch; margin: 0 0 28px; }
+  .intro b { color: var(--ink); font-weight: 500; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: 14px; }
+  .chip:hover { border-color: var(--ink); }
+  .chip.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .chip.solid:hover { background: var(--accent); border-color: var(--accent); }
+  .chip svg { width: 14px; height: 14px; fill: currentColor; }
+  .glance { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--accent); }
+  .glance div { padding: 14px 20px 0 0; min-width: 0; }
+  .glance div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+  .glance .mono { color: var(--muted); display: block; margin-bottom: 6px; }
+  .glance p { margin: 0; font-size: 15px; }
+
+  /* section scaffolding */
+  section { padding-block: 72px; border-top: 1px solid var(--line); scroll-margin-top: 58px; }
+  .sh { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 64px; margin-bottom: 36px; align-items: end; }
+  .sh h2 { font-size: clamp(38px, 4.4vw, 54px); line-height: 1; letter-spacing: -.01em; }
+  .sh p { margin: 0; color: var(--sub); max-width: 60ch; }
+
+  /* focus areas */
+  .focus { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .area { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 26px 24px 22px; display: flex; flex-direction: column; min-width: 0; }
+  .area h3 { color: var(--accent); font-size: 30px; line-height: 1.05; margin-bottom: 12px; }
+  .area > p { margin: 0 0 22px; color: var(--sub); font-size: 15px; }
+  .area ul { list-style: none; margin: auto 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .area li a, .area li span { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-size: 14.5px; }
+  .area li:last-child a, .area li:last-child span { border-bottom: 0; padding-bottom: 0; }
+  .area li a::after { content: "↗"; color: var(--muted); }
+  .area li a:hover { color: var(--accent); }
+  .area li a:hover::after { color: var(--accent); }
+  .area li span em { font-style: normal; color: var(--muted); font-size: 13px; }
+
+  /* case study */
+  .case { background: var(--deep); color: var(--on-deep); border-radius: 6px; padding: 48px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; }
+  .case .mono { color: color-mix(in srgb, var(--on-deep) 62%, transparent); }
+  .case h3 { font-size: clamp(34px, 4vw, 48px); line-height: 1.02; margin: 12px 0 18px; }
+  .case p { margin: 0 0 18px; color: color-mix(in srgb, var(--on-deep) 78%, transparent); max-width: 56ch; }
+  .case ul { margin: 0; padding-left: 18px; color: color-mix(in srgb, var(--on-deep) 88%, transparent); }
+  .case li { margin-bottom: 8px; }
+  .case li::marker { color: color-mix(in srgb, var(--on-deep) 55%, transparent); }
+  .case dl { margin: 0; display: grid; gap: 0; align-self: start; border-top: 1px solid color-mix(in srgb, var(--on-deep) 20%, transparent); }
+  .case dl div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid color-mix(in srgb, var(--on-deep) 20%, transparent); }
+  .case dd { margin: 0; }
+  .case .links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .case .links a { display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border-radius: 999px; text-decoration: none; font-size: 14px; border: 1px solid color-mix(in srgb, var(--on-deep) 35%, transparent); }
+  .case .links a.solid { background: var(--on-deep); color: var(--deep); border-color: var(--on-deep); }
+  .case .links a:hover { border-color: var(--on-deep); }
+
+  /* experience & education */
+  .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
+  .col > .mono { color: var(--accent); display: block; padding-bottom: 12px; border-bottom: 2px solid var(--accent); margin-bottom: 8px; }
+  .entry { padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .entry:last-child { border-bottom: 0; }
+  .entry .top { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+  .entry h3 { font-size: 26px; line-height: 1.15; }
+  .entry .when { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .entry .org { color: var(--sub); margin: 4px 0 10px; font-size: 15px; }
+  .entry p { margin: 0 0 10px; font-size: 15px; color: var(--sub); }
+  .entry ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--sub); }
+  .entry li { margin-bottom: 6px; }
+  .entry li::marker { color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tags span { font: 500 12px var(--mono); padding: 4px 9px; border-radius: 4px; background: var(--accent-soft); color: var(--ink); }
+  .badge { display: inline-block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; border-radius: 3px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; vertical-align: 3px; }
+
+  #events .entry { border-bottom: 0; padding-top: 0; }
+  /* projects index */
+  .pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; }
+  .proj { padding: 22px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 20px; text-decoration: none; }
+  .proj .k { grid-column: 1 / -1; color: var(--muted); }
+  .proj h3 { font-size: 25px; line-height: 1.15; }
+  .proj .go { align-self: start; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; color: var(--sub); white-space: nowrap; }
+  .proj p { grid-column: 1 / -1; margin: 2px 0 0; color: var(--sub); font-size: 15px; }
+  .proj .tags { grid-column: 1 / -1; }
+  a.proj:hover h3 { color: var(--accent); }
+  a.proj:hover .go { border-color: var(--accent); color: var(--accent); }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .skills div { min-width: 0; }
+  .skills .mono { color: var(--muted); display: block; margin-bottom: 10px; }
+
+  /* contact */
+  .contact { background: var(--hero); }
+  .contact h2 { color: var(--accent); }
+  .contact .wrap { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 64px; align-items: end; }
+  .contact h2 { font-size: clamp(44px, 6vw, 80px); line-height: .95; }
+  .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
+  .mail .addr { font: 500 clamp(24px, 3vw, 36px) var(--serif); user-select: all; overflow-wrap: anywhere; }
+  .copy { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .04em; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+  .copy:hover { border-color: var(--ink); }
+  footer { border-top: 1px solid var(--line); padding-block: 22px 36px; color: var(--muted); }
+  footer a { color: var(--sub); text-transform: none; }
+  footer a:hover { color: var(--accent); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 960px) {
+    .hero .wrap, .sh, .contact .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .portrait { max-width: 200px; order: 0; }
+    .focus { grid-template-columns: minmax(0, 1fr); }
+    .case { grid-template-columns: minmax(0, 1fr); padding: 32px 26px; gap: 32px; }
+    .two, .pgrid { grid-template-columns: minmax(0, 1fr); }
+    .two { gap: 40px; }
+    .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .wrap { padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+    .nav a.l { display: none; }
+    .hero { padding-block: 32px 40px; }
+    .hero .wrap { gap: 24px; }
+    .portrait { max-width: 140px; }
+    .portrait figcaption { display: none; }
+    .glance { grid-template-columns: minmax(0, 1fr); }
+    .glance div, .glance div + div { padding: 12px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+    section { padding-block: 52px; }
+    .entry .top { flex-direction: column; gap: 2px; }
+    .skills { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="name" href="#top">Lorenzo Zanotti</a>
+    <a class="l" href="#focus">Focus</a>
+    <a class="l" href="#world-cup">World Cup 2026</a>
+    <a class="l" href="#experience">Experience</a>
+    <a class="l" href="#projects">Projects</a>
+    <a class="l" href="#events">Events</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <div class="wrap">
+      <figure class="portrait">
+        <img src="img/lorenzo-circle.jpg" alt="Portrait of Lorenzo Zanotti" width="640" height="640">
+        <figcaption class="mono">Milan · Vienna</figcaption>
+      </figure>
+      <div>
+        <div class="eyebrow mono">Data Science · Statistics · Football Analytics</div>
+        <h1>Lorenzo<br>Zanotti</h1>
+        <p class="intro">I am a Data Science student at the <b>University of Milano-Bicocca</b>, with a bachelor's in Statistics. I apply <b>statistical modeling and machine learning</b> to real problems, and most of all to <b>football</b>: turning performance data into tactical and strategic insight.</p>
+        <div class="chips">
+          <a class="chip solid" href="mailto:lorenzo.lorenzan@gmail.com"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5zm2 2v.4l8 5 8-5V7H4zm16 2.7-8 5-8-5V17h16V9.7z"/></svg>lorenzo.lorenzan@gmail.com</a>
+          <a class="chip" href="https://www.linkedin.com/in/lorenzo-zanotti-774595328/"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3V9.5zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4V9.5z"/></svg>LinkedIn</a>
+          <a class="chip" href="https://github.com/lorenzozanotti"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+        </div>
+        <div class="glance">
+          <div><span class="mono">Studying</span><p>MSc Data Science, University of Milano-Bicocca</p></div>
+          <div><span class="mono">This semester</span><p>Exchange at TU Wien, Oct 2026 – Feb 2027</p></div>
+          <div><span class="mono">Interests</span><p>Football analytics, Bayesian modeling and machine learning</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="focus">
+    <div class="wrap">
+      <div class="sh">
+        <h2>Focus</h2>
+        <p>Three areas I keep coming back to, each with the work that goes with it.</p>
+      </div>
+      <div class="focus">
+        <div class="area">
+          <h3>Football analytics</h3>
+          <p>Measuring how teams play beyond the scoreline: pressing, territory, chance quality and finishing efficiency.</p>
+          <ul>
+            <li><a href="#world-cup">World Cup 2026 tactical report</a></li>
+            <li><a href="https://github.com/lorenzozanotti/DataViz-Project">The Pressure Game: Serie A beyond xG</a></li>
+            <li><span>Bayesian models for football counts <em>BSc thesis</em></span></li>
+          </ul>
+        </div>
+        <div class="area">
+          <h3>Statistical modeling</h3>
+          <p>Bayesian inference, GLMs and models for data that break standard assumptions, such as overdispersed and zero-inflated counts.</p>
+          <ul>
+            <li><span>Zero-inflated Bayesian regression in Stan <em>BSc thesis</em></span></li>
+            <li><a href="https://github.com/lorenzozanotti/ComputationalStatistic-Project">Italian elections 2022</a></li>
+            <li><a href="https://github.com/lorenzozanotti/DataMining-Project">Rainfall prediction in Hong Kong</a></li>
+          </ul>
+        </div>
+        <div class="area">
+          <h3>Machine learning &amp; AI</h3>
+          <p>From imbalanced classification and explainable models to knowledge graphs and retrieval-augmented LLMs.</p>
+          <ul>
+            <li><a href="https://github.com/lorenzozanotti/Data_Semantics_project">Graph RAG over a scientific knowledge graph</a></li>
+            <li><a href="https://github.com/lorenzozanotti/DS_Lab">Financial fragility and fraud risk in Italy</a></li>
+            <li><a href="https://github.com/lorenzozanotti/MachineLearning-Project">Credit card fraud detection</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="world-cup">
+    <div class="wrap">
+      <div class="case">
+        <div>
+          <span class="mono">Case study · May – July 2026</span>
+          <h3>A tactical report on the 2026 World Cup</h3>
+          <p>Andrea Marinozzi, football journalist at DAZN, was preparing a pre-tournament series on YouTube. I designed the analysis behind it and built the website that hosts it, covering every one of the 48 qualified nations.</p>
+          <ul>
+            <li>Built a structured dataset from scratch from qualification matches: possession, PPDA, passing accuracy, touches in the box, big chances.</li>
+            <li>Developed the full website: group pages, radar charts, head-to-head comparisons and tactical boards with formations.</li>
+            <li>Supervised a team across data collection, tactical writing and editorial review to deliver publication-ready reports.</li>
+          </ul>
+          <div class="links">
+            <a class="solid" href="https://lorenzozanotti.github.io/mondiale_2026/">Open the report</a>
+            <a href="https://github.com/lorenzozanotti/mondiale_2026">Source code</a>
+          </div>
+        </div>
+        <dl>
+          <div><dt class="mono">Role</dt><dd>Football Data Scientist</dd></div>
+          <div><dt class="mono">With</dt><dd>Andrea Marinozzi (YouTube / DAZN)</dd></div>
+          <div><dt class="mono">Scope</dt><dd>48 nations, 12 groups</dd></div>
+          <div><dt class="mono">Built with</dt><dd>HTML, CSS, JavaScript, Chart.js, GitHub Pages</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sh">
+        <h2>Experience &amp; education</h2>
+        <p>A bachelor's in Statistics, now a master's in Data Science, with football and teaching alongside.</p>
+      </div>
+      <div class="two">
+        <div class="col">
+          <span class="mono">Experience</span>
+          <div class="entry">
+            <div class="top"><h3>Football Data Scientist</h3><span class="when mono">05/2026 – 07/2026</span></div>
+            <div class="org">Collaboration with Andrea Marinozzi (YouTube / DAZN) · Remote <span class="badge">Freelance</span></div>
+            <ul>
+              <li>Data-driven tactical analysis series for the FIFA World Cup 2026, covering all 48 qualified nations.</li>
+              <li>Built the analytical dataset from scratch and developed the website hosting the project.</li>
+              <li>Supervised a team across data collection, tactical writing and editorial review.</li>
+            </ul>
+          </div>
+          <div class="entry">
+            <div class="top"><h3>Private Tutor, STEM</h3><span class="when mono">2022 – now</span></div>
+            <div class="org">Mathematics, Statistics and Physics</div>
+            <ul>
+              <li>Tailored lessons for high school and university students.</li>
+              <li>Breaking down statistical concepts and calculus problems to improve students' results.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <span class="mono">Education</span>
+          <div class="entry">
+            <div class="top"><h3>Exchange semester, Data Science</h3><span class="when mono">10/2026 – 02/2027</span></div>
+            <div class="org">Technische Universität Wien · Vienna</div>
+            <div class="tags"><span>Business Intelligence</span><span>Reinforcement Learning</span><span>NLP</span><span>Generative AI</span></div>
+          </div>
+          <div class="entry">
+            <div class="top"><h3>MSc in Data Science</h3><span class="when mono">09/2025 – now</span></div>
+            <div class="org">University of Milano-Bicocca · Milan</div>
+            <div class="tags"><span>Machine Learning</span><span>Data Management</span><span>Data Visualization</span><span>Data Semantics</span><span>Decision Models</span></div>
+          </div>
+          <div class="entry">
+            <div class="top"><h3>BSc in Statistical and Economic Sciences</h3><span class="when mono">09/2022 – 07/2025</span></div>
+            <div class="org">University of Milano-Bicocca · Milan · <b>110/110 cum laude</b></div>
+            <p>Thesis: a flexible Bayesian regression framework for overdispersed and zero-inflated count data, applied to performance metrics in professional football.</p>
+            <div class="tags"><span>Computational Statistics</span><span>Data Mining</span><span>GLM</span><span>Bayesian Statistics</span><span>Time Series</span><span>Econometrics</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sh">
+        <h2>Projects</h2>
+        <p>University and personal projects, most of them developed in teams at Milano-Bicocca.</p>
+      </div>
+      <div class="pgrid">
+        <a class="proj" href="https://github.com/lorenzozanotti/DataViz-Project">
+          <span class="k mono">MSc · Data Visualization</span>
+          <h3>The Pressure Game</h3><span class="go">Code</span>
+          <p>Serie A 2024/25 beyond expected goals. PCA and K-Means reveal four tactical archetypes, with a case study on AC Milan's shift from a high-volume, high-risk side to an efficient one.</p>
+          <div class="tags"><span>Python</span><span>PCA</span><span>K-Means</span><span>Understat</span></div>
+        </a>
+        <a class="proj" href="https://github.com/lorenzozanotti/Data_Semantics_project">
+          <span class="k mono">MSc · Data Semantics</span>
+          <h3>AntibioticKG-RAG</h3><span class="go">Code</span>
+          <p>An OWL/RDF knowledge graph from an OpenAlex citation network, used to compare Graph RAG, Document RAG and a parametric LLM on a 40-question multi-hop benchmark.</p>
+          <div class="tags"><span>RDF/OWL</span><span>SPARQL</span><span>LLMs</span><span>Streamlit</span></div>
+        </a>
+        <a class="proj" href="https://github.com/lorenzozanotti/DS_Lab">
+          <span class="k mono">MSc · Data Science Lab</span>
+          <h3>Financial profiles &amp; fraud risk</h3><span class="go">Code</span>
+          <p>Bank of Italy IACOFI 2023 survey: SOM and K-Means profiling, SHAP to explain income non-disclosure, and a cost-sensitive cyber-fraud model.</p>
+          <div class="tags"><span>Python</span><span>SOM</span><span>Random Forest</span><span>SHAP</span></div>
+        </a>
+        <a class="proj" href="https://github.com/lorenzozanotti/MachineLearning-Project">
+          <span class="k mono">MSc · Machine Learning</span>
+          <h3>Credit card fraud detection</h3><span class="go">Code</span>
+          <p>One million transactions with only 8.7% fraud. Random Forest, Decision Tree, Logistic Regression and Naive Bayes compared, optimised for recall.</p>
+          <div class="tags"><span>KNIME</span><span>Classification</span><span>Imbalanced data</span></div>
+        </a>
+        <a class="proj" href="https://github.com/lorenzozanotti/DataMan-Project">
+          <span class="k mono">MSc · Data Management</span>
+          <h3>Bitcoin market &amp; news</h3><span class="go">Code</span>
+          <p>Binance market data integrated with New York Times articles, with data quality assessment, exploratory analysis and sentiment.</p>
+          <div class="tags"><span>Python</span><span>MongoDB</span><span>APIs</span></div>
+        </a>
+        <a class="proj" href="https://github.com/lorenzozanotti/FOCS-project">
+          <span class="k mono">MSc · Foundations of CS</span>
+          <h3>Trending YouTube</h3><span class="go">Code</span>
+          <p>Fifteen data processing tasks on multi-country YouTube data: merging CSVs, parsing JSON and relational algebra in Pandas.</p>
+          <div class="tags"><span>Python</span><span>Pandas</span></div>
+        </a>
+        <a class="proj" href="https://github.com/lorenzozanotti/ComputationalStatistic-Project">
+          <span class="k mono">BSc · Computational Statistics</span>
+          <h3>Italian elections 2022</h3><span class="go">Code</span>
+          <p>Voting data alone reconstructs Italy's geography: province clusters and the link with socio-economic indicators.</p>
+          <div class="tags"><span>R</span><span>Cluster analysis</span></div>
+        </a>
+        <a class="proj" href="https://github.com/lorenzozanotti/DataMining-Project">
+          <span class="k mono">BSc · Data Mining</span>
+          <h3>Rainfall in Hong Kong</h3><span class="go">Code</span>
+          <p>Predicting the probability of rain from historical weather data, from data cleaning to a reproducible report.</p>
+          <div class="tags"><span>R</span><span>R Markdown</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sh">
+        <h2>Toolbox</h2>
+        <p>What I use day to day.</p>
+      </div>
+      <div class="skills">
+        <div><span class="mono">Languages</span><div class="tags"><span>Python</span><span>R</span><span>SQL</span><span>Stan</span></div></div>
+        <div><span class="mono">Methods</span><div class="tags"><span>Bayesian modeling</span><span>Machine learning</span><span>Time series</span><span>NLP</span><span>Sentiment analysis</span></div></div>
+        <div><span class="mono">Data</span><div class="tags"><span>Pandas</span><span>NumPy</span><span>scikit-learn</span><span>MongoDB</span><span>Neo4j</span><span>Kafka</span><span>Web scraping</span></div></div>
+        <div><span class="mono">Tools &amp; languages</span><div class="tags"><span>Git</span><span>Power BI</span><span>Tableau</span><span>LaTeX</span><span>Italian (native)</span><span>English (fluent)</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="wrap">
+      <div class="sh">
+        <h2>Events</h2>
+        <p>Conferences and hackathons I have taken part in.</p>
+      </div>
+      <div class="two">
+        <div class="entry">
+          <div class="top"><h3>Football Science Conference, 1st edition</h3><span class="when mono">18/05/2026</span></div>
+          <div class="org">MilanLab (AC Milan) &amp; PhD Program in Exercise and Sport Sciences, University of Milan · Milan <span class="badge">Attendee</span></div>
+          <p>The first edition of the conference organised by MilanLab, AC Milan's Research &amp; Innovation Department. A full day of talks by sports scientists, performance staff and researchers on how science and data are changing elite football.</p>
+          <div class="tags"><span>Sports science</span><span>Performance analysis</span><span>Football</span></div>
+        </div>
+        <div class="entry">
+          <div class="top"><h3>ING Talent Boost Hackathon</h3><span class="when mono">21/05/2026</span></div>
+          <div class="org">ING Italia · Milan <span class="badge">Selected participant</span></div>
+          <p>One of the few students selected for a one-day hackathon on <b>GenAI for Inclusion &amp; Impact</b>. In a team, I designed a GenAI solution to make banking services more inclusive and accessible, and pitched it to a jury of ING managers.</p>
+          <div class="tags"><span>Generative AI</span><span>Accessibility</span><span>Teamwork</span><span>Pitching</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap mono">
+    <span>Lorenzo Zanotti · Milan, Italy</span>
+    <span><a href="mailto:lorenzo.lorenzan@gmail.com">lorenzo.lorenzan@gmail.com</a> · Updated October 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
